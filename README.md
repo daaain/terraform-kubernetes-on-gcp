@@ -22,47 +22,11 @@ managed through Kubernetes:
 
 ## Prerequisites
 
-### Google Cloud Platform
+### Google Cloud Platform project
 
-Create a new service account key from the GCP [API Manager Credentials page][3],
-selecting “Compute Engine default service account” as the Service account and
-JSON as the key type.
+Create a new service account key and download as `account.json` to `config`.
 
-Move and rename the JSON key file into the project `terraform` directory, eg:
-
-```sh
-mv ~/Downloads/xyz-f310a0a6a0bf.json ~/workspace/terraform-kubernetes-on-gcp/terraform/account.json
-```
-
-Make sure the file is named `account.json` as the Terraform `providers.tf` is
-expecting that file to exist.
-
-> DO NOT check the `account.json` file into source-control (it’s already in the
-> project's `.gitignore` file to help).
-
-#### Environment variables
-
-Set GCLOUD_REGION and GCLOUD_ZONE to where you want resources to be created,
-otherwise defaults will be used.
-
-TODO: check if GCP project gets picked up from credentials JSON
-
-### Terraform
-
-* Terraform CLI 0.11+
-* A GCP service account key
-
-Download the Terraform CLI [from their site][4], or install it using
-[Homebrew][5] is you’re on a Mac:
-
-```sh
-brew install terraform
-cd terraform
-terraform get
-terraform init
-```
-
-### Kubernetes
+[More info and step by step guide with screenshots here.][3]
 
 ### Google Cloud command-line tool, `gcloud`
 
@@ -74,6 +38,24 @@ brew tap caskroom/cask
 brew cask install google-cloud-sdk
 ```
 
+Once it’s installed, log in:
+
+```sh
+gcloud auth application-default login
+```
+
+### Terraform
+
+* Terraform CLI 0.11+
+* A GCP service account key
+
+Download the Terraform CLI [from their site][4], or install it using
+[Homebrew][5] is you’re on a Mac:
+
+```sh
+brew install terraform
+```
+
 ### Kubernetes command-line tool, `kubectl`
 
 You can either install it from the [official source][7] or using Homebrew if
@@ -83,14 +65,32 @@ you’re on a Mac:
 brew install kubernetes-cli
 ```
 
-## Exercise 1
+## Exercise 1 - Deploying a single Docker image to GCP with `gcloud`
 
-TODO
+This exercise gets us started with deploying a single Docker image to GCP using
+the `gcloud` CLI.
+
+[Let’s do it, onwards to Exercise 1!][8]
+
+## Exercise 2 - Deploying a single Docker image to GCP with Terraform
+
+Now instead of the `gcloud` CLI we’ll use Terraform.
+
+[Let’s do it, onwards to Exercise 2!][9]
+
+## Exercise 3 - Deploying Kubernetes to GCP with Terraform
+
+We’re ready to take on Kubernetes!
+
+[Let’s do it, onwards to Exercise 3!][10]
 
 [1]: https://www.terraform.io/
 [2]: https://www.terraform.io/docs/providers/google/
-[3]: https://console.cloud.google.com/apis/credentials/serviceaccountkey
+[3]: ./docs/gcp.md
 [4]: https://www.terraform.io/downloads.html
 [5]: https://brew.sh/
 [6]: https://cloud.google.com/sdk/
 [7]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
+[8]: ./example1-single-docker-gcloud
+[9]: ./example2-single-docker-terraform
+[10]: ./example3-kubernetes-terraform
