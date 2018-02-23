@@ -19,5 +19,5 @@ creating later will assume that file to exist.
 ![create_service_account_key.png][3]
 
 [1]: https://console.cloud.google.com/apis/credentials/serviceaccountkey
-[2]: ./images/create_service_account_user.png
-[3]: ./images/create_service_account_key.png
+[2]: ../images/create_service_account_user.png
+[3]: ../images/create_service_account_key.png
