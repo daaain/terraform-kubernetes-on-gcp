@@ -84,6 +84,12 @@ We’re ready to take on Kubernetes!
 
 [Let’s do it, onwards to Exercise 3!][10]
 
+## Exercise 4 - Deploying an autoscaling Kubernetes services to GCP with Terraform
+
+Let’s make it a bit more powerful example and autoscale!
+
+[Let’s do it, onwards to Exercise 4!][11]
+
 [1]: https://www.terraform.io/
 [2]: https://www.terraform.io/docs/providers/google/
 [3]: ./docs/gcp.md
@@ -94,3 +100,4 @@ We’re ready to take on Kubernetes!
 [8]: ./example1-single-docker-gcloud
 [9]: ./example2-single-docker-terraform
 [10]: ./example3-kubernetes-terraform
+[11]: ./example4-autoscaling-services
