@@ -79,21 +79,15 @@ the `gcloud` CLI.
 
 ## Exercise 2 - Deploying a single Docker image to GCP with Terraform
 
-Now instead of the `gcloud` CLI we’ll use Terraform.
+We’re ready to take on Kubernetes with Terraform.
 
 [Let’s do it, onwards to Exercise 2!][9]
 
-## Exercise 3 - Deploying Kubernetes to GCP with Terraform
+## Exercise 3 - Deploying an autoscaling Kubernetes services to GCP with Terraform
 
-We’re ready to take on Kubernetes!
+Autoscaling
 
 [Let’s do it, onwards to Exercise 3!][10]
-
-## Exercise 4 - Deploying an autoscaling Kubernetes services to GCP with Terraform
-
-Let’s make it a bit more powerful example and autoscale!
-
-[Let’s do it, onwards to Exercise 4!][11]
 
 [1]: https://www.terraform.io/
 [2]: https://www.terraform.io/docs/providers/google/
@@ -103,6 +97,5 @@ Let’s make it a bit more powerful example and autoscale!
 [6]: https://cloud.google.com/sdk/
 [7]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [8]: ./example1-single-docker-gcloud
-[9]: ./example2-single-docker-terraform
-[10]: ./example3-kubernetes-terraform
-[11]: ./example4-autoscaling-services
+[9]: ./example2-kubernetes-terraform
+[10]: ./example3-autoscaling-services
