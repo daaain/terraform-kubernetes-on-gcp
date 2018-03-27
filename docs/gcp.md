@@ -1,10 +1,11 @@
 Create a new service account key from the GCP [API Manager Credentials page][1],
 selecting “Compute Engine default service account” as the Service account and
-JSON as the key type.
+JSON as the key type. Make sure it has the Role set as Project / Editor.
 
-![create_service_account_user.png][2]
+In a default project setup currently you need to explicitly [enable Google
+Kubernetes Engine API][2].
 
-![create_service_account_key.png][3]
+![create_service_account.png][3]
 
 Move and rename the JSON key file into the project `config` directory, eg:
 
@@ -19,5 +20,5 @@ creating later will assume that file to exist.
 > project's `.gitignore` file to help).
 
 [1]: https://console.cloud.google.com/apis/credentials/serviceaccountkey
-[2]: ../images/create_service_account_user.png
-[3]: ../images/create_service_account_key.png
+[2]: https://console.developers.google.com/apis/library/container.googleapis.com/
+[3]: ../images/create_service_account.png

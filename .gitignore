@@ -1,2 +1,4 @@
 .DS_Store
 /config/account.json
+**/.terraform
+secrets.auto.tfvars

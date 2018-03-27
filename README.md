@@ -24,6 +24,9 @@ managed through Kubernetes:
 
 ### Google Cloud Platform project
 
+You need to have a service account with Project / Editor role and the GKE API
+enabled in the project.
+
 Create a new service account key and download as `account.json` to `config`.
 
 [More info and step by step guide with screenshots here.][3]
@@ -38,10 +41,12 @@ brew tap caskroom/cask
 brew cask install google-cloud-sdk
 ```
 
-Once it’s installed, log in:
+Once it’s installed, log in and set it up for the project:
 
 ```sh
+gcloud components update
 gcloud auth application-default login
+gcloud config set compute/zone europe-west2-b
 ```
 
 ### Terraform
