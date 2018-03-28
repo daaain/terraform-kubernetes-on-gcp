@@ -2,3 +2,6 @@
 /config/account.json
 **/.terraform
 secrets.auto.tfvars
+example2-kubernetes-terraform/terraform/terraform.tfstate
+example2-kubernetes-terraform/terraform/terraform.tfstate.backup
+
