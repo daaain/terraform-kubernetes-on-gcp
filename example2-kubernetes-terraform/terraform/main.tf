@@ -4,84 +4,28 @@ provider "google" {
   region      = "${var.gcloud_region}"
 }
 
-/* *********************************************************************
-** NETWORK
-********************************************************************* */
+module "network" {
+  source = "./modules/network"
 
-resource "google_compute_network" "platform_name" {
-  name    = "${var.platform_name}-net"
+  gcloud_region = "${var.gcloud_region}"
+
+  platform_name = "${var.platform_name}"
 }
 
-resource "google_compute_firewall" "http" {
-  name    = "${var.platform_name}-firewall-http"
-  network = "${google_compute_network.platform_name.name}"
+module "cluster" {
+  source = "./modules/cluster"
 
-  allow {
-    protocol = "icmp"
-  }
+  gcloud_region = "${var.gcloud_region}"
+  gcloud_zone = "${var.gcloud_zone}"
 
-  allow {
-    protocol = "tcp"
-    ports    = ["80", "443"]
-  }
+  platform_name = "${var.platform_name}"
 
-   source_ranges = ["0.0.0.0/0"]
-}
+  network_name = "${module.network.network_name}"
+  subnetwork_name = "${module.network.subnetwork_name}"
 
-resource "google_compute_subnetwork" "platform_name" {
-  name          = "${var.platform_name}-${var.gcloud_region}-subnet"
-  ip_cidr_range = "10.1.2.0/24"
-  network       = "${google_compute_network.platform_name.self_link}"
-  region        = "${var.gcloud_region}"
-}
+  cluster_node_machine_type = "${var.cluster_node_machine_type}"
+  cluster_node_initial_count = "${var.cluster_node_initial_count}"
 
-resource "google_compute_global_address" "platform_name" {
-  name = "${var.platform_name}-address"
-}
-
-/* *********************************************************************
-** CLUSTER
-********************************************************************* */
-
-resource "google_container_cluster" "platform_name" {
-  name = "${var.platform_name}-cluster"
-  network = "${google_compute_network.platform_name.name}"
-  subnetwork = "${google_compute_subnetwork.platform_name.name}"
-  zone = "${var.gcloud_zone}"
-
-  initial_node_count = "${var.cluster_node_initial_count}"
-
-  master_auth {
-    username = "${var.cluster_master_auth_username}"
-    password = "${var.cluster_master_auth_password}"
-  }
-
-  node_config {
-    machine_type = "${var.cluster_node_machine_type}"
-
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/projecthosting",
-      "https://www.googleapis.com/auth/devstorage.full_control",
-      "https://www.googleapis.com/auth/monitoring",
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/compute",
-      "https://www.googleapis.com/auth/cloud-platform"
-    ]
-  }
-}
-
-output "client_certificate" {
-  value = "${google_container_cluster.platform_name.master_auth.0.client_certificate}"
-}
-
-output "client_key" {
-  value = "${google_container_cluster.platform_name.master_auth.0.client_key}"
-}
-
-output "cluster_ca_certificate" {
-  value = "${google_container_cluster.platform_name.master_auth.0.cluster_ca_certificate}"
-}
-
-output "public_ip_address" {
-  value = "${google_compute_global_address.platform_name.address}"
+  cluster_master_auth_username = "${var.cluster_master_auth_username}"
+  cluster_master_auth_password = "${var.cluster_master_auth_password}"
 }
