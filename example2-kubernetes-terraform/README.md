@@ -86,6 +86,7 @@ Let's finish with simple nginx test deployment:
 cd ../kubernetes/
 kubectl apply -f deployment.yaml
 kubectl apply -f ingress.yaml
+kubectl apply -f service.yaml
 ```
 
 [1]: https://github.com/terraform-providers/terraform-provider-google/issues/1022

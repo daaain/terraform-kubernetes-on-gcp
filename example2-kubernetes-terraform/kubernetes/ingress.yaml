@@ -1,14 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: app-http
+  name: nginx-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: terraform-playground-address
     kubernetes.io/ingress.allow-http: "true"
 spec:
-  rules:
-  - http:
-      paths:
-      - backend:
-          serviceName: nginx-deployment
-          servicePort: 80
+  backend:
+    serviceName: nginx-service
+    servicePort: nginx-http
