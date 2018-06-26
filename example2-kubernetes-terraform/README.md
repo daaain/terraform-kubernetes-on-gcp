@@ -91,7 +91,7 @@ kubectl apply -f ingress.yaml
 
 It might take a few minutes for everything to get set up, but eventually you should see the Nginx welcome page if you open the public IP in your browser 🎉
 
-As usual, once you got everything working, make sure to clean up so you don't get stung with ongoing charges for keeping your infrastructure running!
+As usual, once you get everything working, make sure to clean up so you don't get stung with ongoing charges for keeping your infrastructure running!
 
 ```sh
 cd ../terraform/
