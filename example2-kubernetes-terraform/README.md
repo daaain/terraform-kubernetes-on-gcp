@@ -2,7 +2,7 @@ Unfortunately we can't easily use the equivalent of `create-with-container`
 using Terraform (see [Github issue][1]) so have to go the Kubernetes route right
 away to prevent having a lot of manual deployment steps.
 
-Create a local secrets file using the example provided:
+Create a local secrets file using the example provided (and customise the values):
 
 ```sh
 cp ./secrets.auto.tfvars.example ./secrets.auto.tfvars
@@ -85,8 +85,17 @@ Let's finish with simple nginx test deployment:
 ```sh
 cd ../kubernetes/
 kubectl apply -f deployment.yaml
-kubectl apply -f ingress.yaml
 kubectl apply -f service.yaml
+kubectl apply -f ingress.yaml
+```
+
+It might take a few minutes for everything to get set up, but eventually you should see the Nginx welcome page if you open the public IP in your browser 🎉
+
+As usual, once you get everything working, make sure to clean up so you don't get stung with ongoing charges for keeping your infrastructure running!
+
+```sh
+cd ../terraform/
+terraform destroy
 ```
 
 [1]: https://github.com/terraform-providers/terraform-provider-google/issues/1022
